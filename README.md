@@ -1,6 +1,6 @@
 # dark.bio got fucked by heal and doom!
 
-## src is out and use it if u want to,
+## src is out and use it if u want to, lay.rip is better and yet.bio get ran.
 
 ### he dropped his dev so yea doom got it and thats a ez win 
 
