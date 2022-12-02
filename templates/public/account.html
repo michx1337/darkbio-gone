@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    {% include './includes/head.html' %}
+    <title>Account - dark.bio</title>
+    <link href="/static/css/public/account.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="app">
+        <div class="main">
+            <div class="break"></div>
+            <h1>Account</h1>
+            <div class="break"></div>
+            <p class="na" id="notif"></p>
+            <form id="login">
+                <div class="sbreak"></div>
+                <div class="flex column left">
+                    <p>Email</p>
+                    <input type="email" id="email" class="input" placeholder="Current Email">
+                    <input type="email" id="new-email" class="input" placeholder="New Email">
+                    <a class="save" id="email-save">Save</a>
+                </div>
+                <div class="sbreak"></div>
+                <div class="flex column left">
+                    <p>Password</p>
+                    <input type="password" id="password" class="input" placeholder="Current Password">
+                    <input type="password" id="new-password" class="input" placeholder="New Password">
+                    <a class="save" id="email-save">Save</a>
+                </div>
+            </form>
+        </div>
+</body>
+
+</html>

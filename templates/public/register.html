@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% include './includes/head.html' %}
+    <title>Register - dark.bio</title>
+    <link href="/static/css/public/login.css" rel="stylesheet" type="text/css" />
+    <script src="/static/js/public/register.js" async></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=_turnstileCb" async defer></script>
+</head>
+
+<body>
+    <div class="app">
+        <div class="main">
+            <div class="break">
+            </div>
+            <h1>Register
+            </h1>
+            <div class="break">
+            </div>
+            <p class="na" id="notif"></p>
+            <form id="register">
+                <div class="sbreak">
+                </div>
+                <div class="flex column left">
+                    <p>Username
+                    </p>
+                    <input type="text" id="username" class="input" autocomplete="off">
+                </div>
+                <div class="sbreak">
+                </div>
+                <div class="flex column left">
+                    <p>Email
+                    </p>
+                    <input type="email" id="email" class="input" autocomplete="off">
+                </div>
+                <div class="sbreak">
+                </div>
+                <div class="flex column left">
+                    <p>Password
+                    </p>
+                    <input type="password" id="password" class="input" autocomplete="off">
+                </div>
+                <div class="sbreak">
+                </div>
+                <div class="flex column left">
+                    <p>Confirm Password
+                    </p>
+                    <input type="password" id="password2" class="input" autocomplete="off">
+                </div>
+                <div class="sbreak"></div>
+                <div id="turnstile-container">
+                    <div id="turnstile"></div>
+                </div>
+            </form>
+
+            <div class="sbreak"></div>
+            <div class="flex row gap row-left">
+                <input type="checkbox" class="input-checkbox"> <p>I agree to the <a href="/terms">TOS</a> and <a href="/privacy">Privacy Policy</a></p>
+            </div>
+
+            <div class="sbreak"></div>
+                <a onclick="register()" class="register" id="register-button">Register</a>
+
+
+            <div class="break">
+            </div>
+            <div class="sbreak">
+            </div>
+            <a class="sign-in" href="/login">Aleady have an Account
+            </a>
+        </div>
+        <div id="turnstile-container">
+            <div id="turnstile">
+            </div>
+        </div>
+</body>
+<script>
+    function _turnstileCb() {
+        $("#turnstile").children().map(function(){
+            return $(this).remove()
+        })
+        turnstile.render('#turnstile', {
+            sitekey: '0x4AAAAAAAAtdF5nsNHEAsij',
+            theme: 'dark',
+        });
+    }
+</script>
+
+</html>

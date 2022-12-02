@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html style="background-color: inherit;">
+
+<head>
+    {% include './includes/head.html' %}
+    <title>{{page["profile"]["display_name"]}} · dark.bio</title>
+    <link href="/static/css/public/constants.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/page.css" rel="stylesheet" type="text/css" />
+</head>
+
+{% if page['profile']['background_type'] == "image" %}
+<body class="{{page["profile"]["theme"]}} {{page["profile"]["font"]}}" style="background-image: url('{{page["profile"]["background"]}}')">
+{% elif page['profile']['background_type'] == "color" %}
+<body class="{{page["profile"]["theme"]}} {{page["profile"]["font"]}}" style="background-color: {{page["profile"]["background"]}}">
+{% else %}
+<body class="dark {{page["profile"]["font"]}}">
+{% endif %}
+    <div class="app">
+        <div class="container">
+            {% if page['profile']['avatar'] %}
+            <img class="profile-card-img"
+                src="{{page['profile']['avatar']}}">
+            {% else %}
+                <img class="profile-card-img"
+                src="https://cdn.dark.bio/img/site/default_avatar.jpg">
+            {% endif %}
+            <div class="flex-col">
+                <div class="flex-row gap-sm" style="flex-wrap: wrap;">
+                    {% if page["profile"]["display_name"] %}
+                        <p class="font-lg username" style="color: {{page['profile']['colors']['name']}}">{{page["profile"]["display_name"]}}</p>
+                    {% else %}
+                        <p class="font-lg username" style="color: {{page['profile']['colors']['name']}}">{{page["_id"]}}</p>
+                    {% endif %}
+                    {% for badge in page["status"]["badges"] %}
+                        {% if badge["enabled"] %}
+                            <i class="{{badge['class']}}" title="{{badge['badge']}}" style="color: {{page['profile']['colors']['name']}}"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="font-sm" style="color: {{page['profile']['colors']['activity']}}; max-width: 800px; word-break: break-all;">{{page["profile"]["activity"]}}</p>
+                <p class="font-med" style="color: {{page['profile']['colors']['bio']}}; max-width: 800px; word-break: break-all;">{{page["profile"]["bio"]}}</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="link-container gap-sm">
+                {% for link in page["links"] %}
+                {% if link["highlight"] and link["full_row"] %}
+                <a class="card item-full highlight" href="{{link['url']}}" target="_blank" style="color: {{link['accent']}}; background-color: {{link['color']}}; text-decoration: none;">
+                {% elif link["highlight"] %}
+                <a class="card item highlight" href="{{link['url']}}" target="_blank" style="color: {{link['accent']}}; background-color: {{link['color']}}; text-decoration: none;">
+                {% elif link["full_row"] %}
+                <a class="card item-full " href="{{link['url']}}" target="_blank" style="color: {{link['accent']}}; background-color: {{link['color']}}; text-decoration: none;">
+                {% else %}
+                <a class="card item" href="{{link['url']}}" target="_blank" style="color: {{link['accent']}}; background-color: {{link['color']}}; text-decoration: none;">
+                {% endif %}
+                    <div class="link-left">
+                        <i class="fa-solid fa-moon"></i>
+                        <p>{{link['name']}}</p>
+                    </div>
+                    <i class="icon-container fa-solid fa-arrow-right"></i>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

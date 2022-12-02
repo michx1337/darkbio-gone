@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% include './includes/head.html' %}
+    <title>Edit - dark.bio</title>
+    <link href="/static/css/public/constants.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/edit/main.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/edit/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/edit/themes.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/edit/links.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/public/edit/profile.css" rel="stylesheet" type="text/css" />
+    <script src="/static/js/public/edit/main.js" defer></script>
+    <script src="/static/js/public/edit/events.js" defer></script>
+    <script src="/static/js/public/edit/uploading.js" defer></script>
+
+</head>
+
+<body id="main-body" class="dark poppins">
+    <div class="all-settings">
+        <div class="all-settings-button" onclick="openAllSettings()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="settingsbottom">
+            <a class="all-settings-button-small" onclick="UpdateProfile()" title="Save">
+                <i class="fa-solid fa-save"></i>
+                <p>Save</p>
+            </a>
+            <a class="all-settings-button-small" onclick="openPopup()" title="Settings">
+                <i class="fa-solid fa-gear"></i>
+                <p>Settings</p>
+            </a>
+            <a class="all-settings-button-small" href="/account" target="_blank" title="Account">
+                <i class="fa-solid fa-user"></i>
+                <p>Account</p>
+            </a>
+            <a class="all-settings-button-small" id="view-page" onclick="location.href='/'" title="View Page" target="_blank">
+                <i class="fa-solid fa-eye"></i>
+                <p>View Page</p>
+            </a>
+            <a class="all-settings-button-small" href="/logout" title="Logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Logout</p>
+            </a>
+        </div>
+    </div>
+        <section>
+            <div class="profile-container">
+                <div class="color-settings" onclick="openColorPopup()">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <div class="profile-card-img drop-zone mb border-round" id="profile-container">
+                    <img class="profile-card-img drop-zone-prompt"
+                        src="https://cdn.dark.bio/img/site/default_avatar.jpg" id="avatar">
+                    <input autocomplete="off" type="file" name="avatar" id="avatar_image" class="drop-zone-input">
+                </div>
+    
+                <div class="flex-col profile mt gap-tn">
+                    <div class=" name-container">
+                        <input maxlength="25" class="profile-input" type="text" placeholder="Username" id="username">
+                    </div>
+                    <div class=" name-container">
+                        <input maxlength="35" class="profile-input" type="text" placeholder="Activity" id="activity">
+                    </div>
+                    <div class=" name-container">
+                        <textarea maxlength="72" id="bio" placeholder="Bio"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="links-container">
+                <div class="link-container gap-sm" id="links-list">
+                    <a draggable="false" droppable="false" sortable="false" class="add-link" onclick="addLink()"
+                        id="add-link" style="color: inherit; text-decoration: none;">
+                            Add Content
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+        <p class="footer"><img width=30px height=30px src="https://cdn.dark.bio/img/site/darksanta.png"</img>dark.bio</p>
+    <div class="popup">
+        
+            <p>Change Page</p>
+            <div class="radio-container">
+                {% for user in account["pages"] %}
+                    <div class="radio-choice">
+                        {% if loop.index == 1 %}
+                        <input type="radio" name="page-option" id="{{user}}" checked>
+                        {% else %}
+                        <input type="radio" name="page-option" id="{{user}}">
+                        {% endif %}
+                        <label for="{{user}}">{{user}}</label>
+                    </div>
+                {% endfor %}
+                {% if account["pages"]|length < account["pages_allowed"] %}
+                    <div class="radio-choice">
+                        <input type="radio" name="page-option" id="new-account">
+                        <label for="new-account">Create Page</label>
+                    </div>
+                {% endif %}
+            </div>
+            <div id="create-page" style="display: none">
+                <p class="mt">Create New Page</p>
+                <p id="notif"></p>
+                <div class="row">
+                    <input type="text" class="profile-input" id="new-username" maxlength=20 style="text-align: left;">
+                    <a class="icon-button" name="delete-option" id="delete-button" onclick="createPage()">Create</a>
+                </div>
+            </div>
+            <div>
+                <p class="mt">Change Username</p>
+                <p id="notif"></p>
+                <div class="gap-smd row">
+                    <input type="text" class="profile-input" maxlength=20 id="change-username" style="text-align: left;">
+                    <a class="icon-button" onclick="changeUsername()" id="change-button">Change</a>
+                </div>
+            </div>
+            <p class="mt">Change Font</p>
+            <div class="radio-container" id="font-edit">
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="poppins" class="font-option" checked>
+                    <label for="poppins" style="font-family: 'Poppins', sans-serif;">Poppins</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="montserrat" class="font-option">
+                    <label for="montserrat" style="font-family: 'Montserrat', sans-serif;">Montserrat</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="chillax" class="font-option">
+                    <label for="chillax" style="font-family: 'Chillax', sans-serif;">Chillax</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="trebuchet" class="font-option">
+                    <label for="trebuchet" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Trebuchet</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="sora" class="font-option">
+                    <label for="sora" style="font-family: 'Sora', sans-serif;">Sora</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="font-option" id="comic-sans" class="font-option">
+                    <label for="comic-sans" style="font-family: 'Sans Comic Sans', sans-serif;">Comic Sans</label>
+                </div>
+            </div>
+        <div class="break"></div>
+        <a class="delete-page-button" onclick="deletePageConfirm()">Delete Page</a>
+        <div class="deletepageconfirm">
+            <p class="boldt">Confirm Page Deletion?</p>
+            <a class="deleteconfirm mt" id="delete-button" onclick="deletePage()">Delete</a>
+        </div>
+        <div class="settings-options">
+            <a class="settings-cancel" id="close"><i class="fa-solid fa-xmark"></i></a>
+            <a class="settings-save" onclick="UpdateProfile()">Save</a>
+        </div>
+    </div>
+    <div class="colorpopup">
+        <!-- Name Color -->
+        <div class="column">
+            <p class="colortext">Display Name</p>
+            <div class="radio-container" id="name-color-choices">
+                <div class="radio-choice">
+                    <input type="radio" name="name-color-option" id="name-color" checked>
+                    <label for="name-color">Color</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="name-color-option" id="name-gradient">
+                    <label for="name-gradient">Gradient</label>
+                </div>
+            </div>
+            <div class="row" id="name-colors">
+                <p id="name-primary">Primary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="name-color-1">
+                <p id="name-secondary" style="display: none;">Secondary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="name-color-2" style="display: none">
+            </div>
+        </div>
+        <!-- Activity Color -->
+        <div class="column">
+            <p class="colortext">Activity</p>
+            <div class="radio-container" id="activity-color-choices">
+                <div class="radio-choice">
+                    <input type="radio" name="activity-color-option" id="activity-color" checked>
+                    <label for="activity-color">Color</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="activity-color-option" id="activity-gradient">
+                    <label for="activity-gradient">Gradient</label>
+                </div>
+            </div>
+            <div class="row" id="activity-colors">
+                <p id="activity-primary">Primary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="activity-color-1">
+                <p id="activity-secondary" style="display: none;">Secondary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="activity-color-2" style="display: none">
+            </div>
+        </div>
+        <!-- Bio Color -->
+        <div class="column">
+            <p class="colortext">Bio</p>
+            <div class="radio-container" id="bio-color-choices">
+                <div class="radio-choice">
+                    <input type="radio" name="bio-color-option" id="bio-color" checked>
+                    <label for="bio-color">Color</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="bio-color-option" id="bio-gradient">
+                    <label for="bio-gradient">Gradient</label>
+                </div>
+            </div>
+            <div class="row" id="bio-colors">
+                <p id="bio-primary">Primary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="bio-color-1">
+                <p id="bio-secondary" style="display: none;">Secondary</p>
+                <input type="color" class="profile-color" value="#DDDDDD" id="bio-color-2" style="display: none">
+            </div>
+        </div>
+        <div class="column">
+            <p class="colortext">Background</p>
+            <div class="radio-container" id="background-choices">
+                <div class="radio-choice">
+                    <input type="radio" name="bg-option" id="color" checked>
+                    <label for="color">Color</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" name="bg-option" id="image">
+                    <label for="image">Image</label>
+                </div>
+            </div>
+            <div class="sbreak"></div>
+            <div class="row">
+                <div class="drop-zone mb" style="display: none;" id="background-image-dropzone">
+                    <span class="drop-zone-prompt">Drop file or<br>click to upload</span>
+                    <input autocomplete="off" type="file" id="background_image" name="background" class="drop-zone-input"></div>
+                
+                <div id="bg-col"><input id="bg-col-val" autocomplete="off" class="profile-color" type="color" value="#111111"></div>
+            </div>
+        </div>
+        <div class="column"></div>
+    <p class="colortext">Profile Container</p>
+    <div class="radio-container" id="profile-container-choices">
+        <div class="radio-choice">
+            <input type="radio" name="profile-container-option" id="profile-container-color-option" checked>
+            <label for="profile-container-color-option">Color</label>
+        </div>
+        <div class="radio-choice">
+            <input type="radio" name="profile-container-option" id="profile-container-transparent-option">
+            <label for="profile-container-transparent-option">Transparent</label>
+        </div>
+    </div>
+    <div class="sbreak"></div>
+    <div class="row">
+        <input id="profile-container-color" autocomplete="off" class="profile-color" type="color" value="#111111">
+    </div>
+        <!-- Profile Container Settings -->
+        <!-- Break -->
+        <div class="settings-options">
+            <a class="settings-cancel" id="closecolorpopup"><i class="fa-solid fa-xmark"></i></a>
+            <a class="settings-save" onclick="UpdateProfile(); closePopup();">Save</a>
+        </div>
+    </div>
+    <div id="toast">
+        <div class="container">
+            <i class="fa-solid fa-circle"></i>
+            <span class="message"></span>
+        </div>
+    </div>
+</body>
+
+</html>

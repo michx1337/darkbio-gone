@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include './includes/head.html' %}
+        <!-- Misc -->
+        <title>{{page["profile"]["display_name"]}} - dark.bio</title>
+        <link href="/static/css/public/page-test.css?v=2" rel="stylesheet" type="text/css" />
+        <meta property="og:title" content="@{{page['_id']}}"/>
+        <meta property="og:description" content="View {{page['profile']['display_name']}} on dark.bio!" />
+        {% if page['profile']['avatar'] %}
+        <meta property="og:image" content="{{page['profile']['avatar']}}" />
+        {% else %}
+        <meta property="og:image" content="https://cdn.dark.bio/img/site/default_avatar.jpg" />
+        {% endif %}
+    </head>
+    {% if page['profile']['background_type'] == "image" %}
+    <body class="{{page["profile"]["theme"]}} {{page["profile"]["font"]}}" style="background-image: url('{{page["profile"]["background"]}}')">
+    {% elif page['profile']['background_type'] == "color" %}
+    <body class="{{page["profile"]["theme"]}} {{page["profile"]["font"]}}" style="background-color: {{page["profile"]["background"]}}">
+    {% else %}
+    <body class="{{page["profile"]["font"]}}">
+    {% endif %}
+        <section class="w-full flex center-vertical column">
+            {% if not page['profile']["colors"]['container'] %}
+            <div class="profile-texts w-full flex  center-vertical column" style="background-color: transparent;">
+            {% else %}
+            <div class="profile-texts w-full flex  center-vertical column" style="background-color: {{page['profile']['colors']['container']}}dd">
+            {% endif %}
+                {% if page['profile']['avatar'] %}
+                <img src="{{page['profile']['avatar']}}" class="avatar">
+                {% else %}
+                <img src="https://cdn.dark.bio/img/site/default_avatar.jpg" class="avatar">
+                {% endif %}
+                <!-- display name -->
+                <div class="flex row gap-sm center-vertical mt">
+                    {% if page["profile"]["colors"]["name_gradient"] %}
+                    <p class="username" style="background: -webkit-linear-gradient(45deg, {{page['profile']['colors']['name']}}, {{page['profile']['colors']['name2']}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{page["profile"]["display_name"]}}</p>
+                    {% else %}
+                    <p class="username" style="color: {{page['profile']['colors']['name']}}">
+                        {{page["profile"]["display_name"]}}
+                    </p>
+                    {% endif %}
+                    <div class="badge-container">
+                        {% for badge in page["status"]["badges"] %}
+                            {% if badge["enabled"] %}
+                                    <div class="tooltip-container">
+                                        <img class="badge" src="{{badge['class']}}">
+                                        <span class="tooltip">{{badge['badge']}}</span>
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- activity -->
+                {% if page["profile"]["colors"]["activity_gradient"] %}
+                <p class="activity" style="background: -webkit-linear-gradient(45deg, {{page['profile']['colors']['activity']}}, {{page['profile']['colors']['activity2']}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{page["profile"]["activity"]}}</p>
+                {% else %}
+                <p class="activity" style="color: {{page['profile']['colors']['activity']}};">{{page["profile"]["activity"]}}</p>
+                {% endif %}
+                <!-- bio -->
+                {% if page["profile"]["colors"]["bio_gradient"] %}
+                <p class="bio" style="background: -webkit-linear-gradient(45deg, {{page['profile']['colors']['bio']}}, {{page['profile']['colors']['bio2']}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{page["profile"]["bio"]}}</p>
+                {% else %}
+                <p class="bio" style="color: {{page['profile']['colors']['bio']}};">{{page["profile"]["bio"]}}</p>
+                {% endif %}
+            </div>
+        </section>
+        <section class="w-full flex gap-lg center-horizontal">
+            <div class="w-full flex center-horizontal container nowrap">
+                {% for link in page["links"] %}
+                {% if link["full_row"] %}
+                <div class="card-container full">
+                {% else %}
+                <div class="card-container">
+                {% endif %}
+                    {% if link["highlight"] %}
+                    <div class="highlight" style="background-color: {{link['accent']}};"></div>
+                    {% endif %}
+                    {% if link["full_row"] %}
+                    <a class="card full nowrap" target="_blank" href="{{link['url']}}" style="color: {{link['accent']}}; background-color: {{link['color']}};">
+                    {% else %}
+                    <a class="card nowrap" target="_blank" href="{{link['url']}}" style="color: {{link['accent']}}; background-color: {{link['color']}};">
+                    {% endif %}
+                        <div class="link-left gap-x-sm center-vertical nowrap">
+                            <i class="fa-solid fa-moon"></i>
+                            <p>{{link["name"]}}</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right icon-container"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <div class="footer">
+            <a href="https://dark.bio/">dark.bio</a>
+        </div>
+    </body>
+</html>

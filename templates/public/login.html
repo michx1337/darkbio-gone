@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% include './includes/head.html' %}
+    <title>Login - dark.bio</title>
+    <link href="/static/css/public/login.css" rel="stylesheet" type="text/css" />
+    <script src="/static/js/public/login.js" async></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=_turnstileCb" async defer></script>
+</head>
+
+<body>
+
+    <div class="app">
+        <div class="main">
+            <div class="break"></div>
+            <h1>Login</h1>
+            <div class="break"></div>
+            <p class="na" id="notif"></p>
+            <form id="login">
+                <div class="sbreak"></div>
+                <div class="flex column left">
+                    <p>Email</p>
+                    <input type="email" id="email" class="input">
+                </div>
+                <div class="sbreak"></div>
+                <div class="flex column left">
+                    <p>Password</p>
+                    <input type="password" id="password" class="input">
+                </div>
+                <div class="sbreak"></div>
+                <div id="turnstile-container">
+                    <div id="turnstile"></div>
+                </div>
+                <div class="sbreak"></div>
+                <a onclick="login()" class="register" id="login-button">Login</a>
+            </form>
+            <div class="sbreak"></div>
+            <div class="break"></div>
+            <div class="sbreak"></div>
+            <a class="sign-in" href="/register">Don't have an Account</a>
+        </div>
+</body>
+<script>
+    function _turnstileCb() {
+        $("#turnstile").children().map(function(){
+            return $(this).remove()
+        })
+        turnstile.render('#turnstile', {
+            sitekey: '0x4AAAAAAAAtdF5nsNHEAsij',
+            theme: 'dark',
+        });
+    }
+</script>
+</html>

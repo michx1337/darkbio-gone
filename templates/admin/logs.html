@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% include './includes/head.html' %}
+        <title>Admin · dark.bio</title>
+        <link href="/static/css/public/constants.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/admin/panel.css" rel="stylesheet" type="text/css" />
+        <script src="/static/js/admin/script.js" defer></script>
+    </head>
+
+    <body>
+        <div class="root" >
+            <div class="search-bar" style="display: flex; flex-direction: column;">
+                <a onclick="lastPage()">Last</a>
+                <input type="text" placeholder="Search" id="search">
+                <a onclick="nextPage()">Next</a>
+            </div>
+            <h1 id="text">Type something in the search bar then press enter.</h1>
+            <div id="users">
+                <div class="card">
+                <div class="section">
+                    <img src="https://cdn.dark.bio/img/avatar/a57e40be-2581-4e2a-b7db-70568437c857.gif" class="pfp">
+                    <div class="column">
+                        <p class="title">User</p>
+                        <p class="desc">/dark</p>
+                    </div>
+                    <div class="column">
+                        <p class="title">Owner ID</p>
+                        <p class="desc">2721hd7ysd7s1j</p>
+                    </div>
+                </div>
+                <hr class="divider"></hr>
+                <div class="section">
+                    <div class="column">
+                        <p class="title">Plan</p>
+                        <p class="desc">Free</p>
+                    </div>
+                    <div class="column">
+                        <p class="title">Last Update</p>
+                        <p class="desc">Badge Given: Early</p>
+                    </div>
+                </div>
+                <hr class="divider"></hr>
+                <div class="section">
+                    <div class="column">
+                        <p class="title">Badges</p>
+                        <div class="row">
+                            <i class="badge fa-solid fa-crow"></i>
+                            <i class="badge fa-solid fa-ghost"></i>
+                        </div>
+                    </div>
+                    <a onclick="openPopup('rapid')">Popup</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+    
+</html>

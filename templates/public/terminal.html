@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
+        </head>
+    <body>
+    </body>
+<script>
+    $('body').terminal({
+        help: function() {
+            this.echo('dark.bio user panel help.\n\n setpage [username]\nSets the username being changed to the username selected\n\n  username [new username]\nChanges your username\n\n  deletepage\nDeletes your current selected page.\n\n  displayname [name]\nChanges the name displayed on your page. Doesnt change the username.\n\n');
+        }
+    }, {
+        greetings: 'dark.bio user terminal. Welcome /{{user}}'
+    });
+</script>
+</html>

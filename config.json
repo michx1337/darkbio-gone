@@ -1,0 +1,11 @@
+{
+    "mongo_url": "mongodb+srv://cluster0.op8dh6d.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority",
+    "boto3": {
+        "region_name": "sfo3",
+        "endpoint_url": "https://sfo3.digitaloceanspaces.com",
+        "aws_access_key_id": "DO00FJKEWE8V2ZMXX6T8",
+        "aws_secret_access_key": "StsaHocXCMZNVH9jTcZdz1YuUXTRTWfqlKKlDEEIRo4"
+    }
+}
+
+

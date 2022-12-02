@@ -1,0 +1,314 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25px;
+    
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    border-radius: 7.5px;
+    background-color: var(--card-col);
+    transform: translate(0px, 0px);
+}
+
+.link-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    transform: translate(0px, 0px);
+    transition: transform .3s ease;
+    padding-right: 1rem;
+}
+
+.link-left i {
+    margin-right: 10px;
+    transform: translate(0px, 0px);
+    transition: transform .3s ease;
+    font-size: 125%;
+}
+
+.link-left p {
+    font-size: 80%;
+}
+
+.icon-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .3s ease;
+}
+
+.card:hover { box-shadow: 0px 0px 1px 2px; }
+
+.link-container {
+    flex-wrap: wrap;
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    width: 100%;
+}
+
+.item { flex: 1 1 48%; }
+.item-full { flex: 2 2 100%; }
+
+.highlight {
+    box-shadow: 0 0 15px 0;
+    animation: pulse 2s infinite;
+}
+
+.add-background {
+    background-color: #444;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.fa-plus {
+    font-size: 20px;
+    color: #DDD;
+    margin-right: 0 !important;
+}
+
+.card input[type=text] {
+    width: 100%;
+    height: 50px;
+    
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    border-radius: 7.5px;
+    outline: none;
+    transition: .3s ease all;
+    border: 0;
+    
+    background-color: #26262c;
+    border: 1px solid hsla(0,0%,76%,.069);
+    color: inherit;
+}
+
+.card input[type=text]:focus {
+    border: 1px solid hsla(0,0%,76%,1);
+}
+
+.top-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25px;
+
+    background-color: inherit;
+    color: inherit;
+    
+    width: 100%;
+    height: 50px;
+
+    border-radius: 7.5px;
+    transform: translate(0px, 0px);
+
+    transition: none;
+}
+
+.bottom-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 25px;
+    overflow: hidden;
+    white-space: nowrap !important;
+    flex-wrap: nowrap !important;
+    
+    width: 100%;
+    height: fit-content;
+    max-height: 0px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+
+    border-radius: 0.5rem;
+    background-color: var(--card-col);
+    transform: translate(0px, 0px);
+    color: white !important;
+
+    transition: all .25s ease;
+}
+
+.bottom-open {
+    max-height: fit-content;
+    padding-top: 7.5px;
+    transition: all .25s ease;
+    padding-bottom: 7.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Inter', sans-serif;
+    justify-content: center;
+    margin-top: 5px;
+    background-color: #0f0f12;
+    border: 1px solid hsla(0,0%,76%,.069);
+}
+
+.link-button {
+    background-color: transparent;
+    border-radius: 7.5px;
+    width: 120px;
+    height: 45px;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.delete-button {
+    border: solid 2px #ff1111;
+    color: #ff1111;
+    margin-left: auto;
+}
+
+.delete-button:hover {
+    border-color: #ff6666;
+    color: #ff6666;
+}
+
+.add-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    user-select: none;
+    height: 70px;
+    cursor: pointer;
+    font-weight: 800;
+    background-color: #26262c;
+    border: 1px solid hsla(0,0%,76%,.089);
+    border-radius: 0.25rem;
+    transition: .2s ease all;
+}
+
+.add-link:hover {
+    border: 1px solid hsla(0,0%,76%,1);
+}
+
+.color-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7.5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.slider-input[type="checkbox"]:focus{
+   outline:0;
+}
+
+.slider-input[type="checkbox"] {
+   appearance: none;
+   background-color: #5c5c5c;
+   border: 1px solid #5c5c5c;
+   border-radius: 26px;
+   cursor: pointer;
+   height: 28px;
+   position: relative;
+   transition: border .25s .15s, box-shadow .25s .3s, padding .25s;
+   width: 44px;
+   vertical-align: top;
+   -webkit-appearance: none;
+}
+
+.slider-input[type="checkbox"]:after {
+   background-color: #ffffff;
+   border: 1px solid #5c5c5c;
+   border-radius: 24px;
+   box-shadow: inset 0 -3px 3px rgba(0, 0, 0, 0.025), 0 1px 4px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.1);
+   content:'';
+   display: block;
+   height: 24px;
+   left: 0;
+   position: absolute;
+   right: 16px;
+   top: 0;
+   transition: border .25s .15s, left .25s .1s, right .15s .175s;
+}
+
+.slider-input[type="checkbox"]:checked {
+   border-color: transparent;
+   box-shadow: inset 0 0 0 13px #333333;
+   padding-left: 18px;
+   transition: border .25s, box-shadow .25s, padding .25s .15s;
+}
+
+.slider-input[type="checkbox"]:checked:after {
+   border-color: transparent;
+   left: 16px;
+   right: 0;
+   transition: border .25s, left .15s .25s, right .25s .175s;
+}
+
+@media only screen and (max-width: 850px) {
+    .item { flex: 2 2 100%; }
+    .app { padding: 15px; }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0px;
+    }
+    50% { 
+        box-shadow: 0 0 15px;
+    }
+    100% {
+        box-shadow: 0 0 0px;
+    }
+}
+
+.handler {
+    cursor: move;
+}
+
+.links-container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@keyframes highlight{
+    0% {
+        right: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: .85;
+    }
+    100% { 
+        opacity: 0;
+        transform: scaleX(1.045) scaleY(1.3)
+    }
+}
+
+.highlight {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: #3673fc;
+    opacity: .85;
+    animation: highlight 2s ease infinite;
+}

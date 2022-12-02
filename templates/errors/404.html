@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=chillax@400&display=swap" rel="stylesheet">
+
+    <!-- Styling -->
+    <link href="/static/css/public/404.css" rel="stylesheet" type="text/css" />
+    {% include './includes/head.html' %}
+    <title>404 - dark.bio</title>
+</head>
+
+<body>
+    <div class="root">
+        <div class="hero"><img src="https://cdn.dark.bio/img/site/logo.png" class="logo"><p class="header">dark.bio</p></div>
+        <div class="container"><p><a class="bold">{{ username }}</a> has not been created yet! 
+            Create it <a class="bold" href="/register">here</a></p>
+        </br>
+        <a class="bold home" href="/">Go Home</a>
+        </div>
+        <img src="https://cdn.dark.bio/img/site/notfound.gif" width="40%" style="margin-top: 1rem;">
+    </div>
+</body>
+</html>
